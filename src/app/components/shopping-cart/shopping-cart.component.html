@@ -1,0 +1,44 @@
+
+<h1>make a new order </h1>
+
+
+<div class="mb-3">
+    <label for="" class="form-label">Select Category</label>
+    <select class="form-control" name="cat" id="CatSel" title="catgory"
+        [(ngModel)]="selectedCatID">
+        
+      <option value="0">Select All</option>
+      <option *ngFor="let cat of categorylist" [value]="cat.id">{{cat.name}}</option>
+    </select>
+    
+  </div>
+<div >
+    <app-products [receivedSelCatID]="selectedCatID"   (onTotalPriceChanged)="updateTotalPrice($event)" (onaddtocartclicked)="newitemadded($event)"  (required_quantity)=" get_required_quant($event)"  ></app-products>
+</div>
+<h2>order total price :{{receivedOrderTotalPrice | currency}} </h2>
+
+<table class="table"  >
+    <thead>
+      <tr >
+        <th scope="col">product id</th>
+        <th scope="col">product name</th>
+        <th scope="col">product quantity</th>
+        <th scope="col">product price</th>
+        <th scope="col">remove</th>
+      </tr>
+    </thead>
+    <tbody>
+        <!-- <tr [ngStyle]="{'background-color':prd.quantity==0? 'lightyellow':'lightgray', 'color':prd.quantity==0? 'red':'darkblue'}"> -->
+      <tr  *ngFor="let item of cartitems" >
+        <th scope="row">{{item. productId}}</th>
+        <td>{{item.product_name}}</td>  
+        <td>{{item.quantity}}</td>
+        <td>{{item.product_price}}</td>
+       <td><button type="button" class="btn btn-primary d-block" style="background-color: blue;" (click)="remove(item.productId)" > remove</button></td> 
+       <br>
+      </tr> 
+      <td><button type="button" class="btn btn-primary d-block" style="background-color: blue;"  (click)="createorder()"> place order</button></td> 
+    </tbody>
+
+  </table>
+  

@@ -1,0 +1,43 @@
+<form class="m-3" [formGroup]="addproductform" (ngSubmit)="submit()">
+
+  <div class="mb-3">
+    <label for="name" class="form-label">product name</label>
+    <input type="text" formControlName="name" class="form-control" name="text" id="text" placeholder="">
+  </div>
+
+    <div class="mb-3">
+      <label for="price" class="form-label">price</label>
+      <input type="Email" formControlName="price" class="form-control" name="price" id="uEmail" placeholder="">
+    </div>
+    <div class="mb-3">
+      <label for="Address" class="form-label">quantity</label>
+      <input   type="text"  formControlName="quantity" class="form-control" name="quantity" id="quantity"
+        placeholder="">
+    </div>
+  
+    <div class="mb-3">
+      <label for="Address" class="form-label">category Id</label>
+      <input   type="text"  formControlName="categoryID" class="form-control" name="categoryID" id="categoryID"
+        placeholder="">
+    </div>
+    
+    <div class="row" style="margin-bottom:15px;">
+      <div class="col-md-3">
+        <input type="file" formControlName="image"  #file placeholder="Choose file" (change)="uploadFile(file.files)" style="display:none;">
+        <button type="button"  class="btn btn-success" (click)="file.click()">Upload File</button>
+      </div>
+      <div class="col-md-4">
+        <span class="upload" *ngIf="progress > 0">
+          {{progress}}%
+        </span>
+        <span class="upload" *ngIf="message">
+          {{message}}
+        </span>
+      </div>
+    </div>
+   
+  
+  
+    <button [disabled]="addproductform.invalid" type="submit" class="btn btn-success">Submit</button>
+  </form>
+  
